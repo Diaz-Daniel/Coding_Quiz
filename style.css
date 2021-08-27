@@ -1,0 +1,48 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+body {
+  padding: 5%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ced7d8;
+}
+
+.container {
+  border-style: groove;
+  border-radius: 5px;
+  background-color: #316879;
+  padding: 30px;
+  box-shadow: 0 0 5px 2px;
+}
+
+h1 {
+  font-size: 20px;
+}
+li {
+  font-size: 15px;
+}
+.btnDisplay {
+  margin: auto;
+  padding: 15px;
+}
+
+.btn {
+  border-style: 1px double;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.btn:hover {
+  border-color: #f47a60;
+  border-width: 2px;
+}
+
+.hidden{
+  display:none;
+}
