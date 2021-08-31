@@ -6,6 +6,9 @@ var clockEl = document.getElementById('clock');
     var timer;
     var time = 75;
 
+//SCORE
+var score = 0;
+
 //START GAME
 //start of game id
 var startContainer = document.getElementById('opening');
@@ -30,8 +33,8 @@ var initials = document.getElementById('initials');
 //submit button for separate page display of scores
 var submit = document.getElementById('submit');
 
-        //Funtion beginQuestions
-        var questionIndex = 0;
+//Funtion beginQuestions
+var questionIndex = 0;
 
 
 
@@ -88,17 +91,20 @@ var quizQuestions=[
     }
     
 ]
-console.log(quizQuestions);
 
 function start(){
-
+    console.log('start')
     //hide container
     startContainer.setAttribute("class", "hidden");
     //start timer and show time on page
     timer = setInterval(()=>{
         //update the time
             time--;
+            console.log('time', time)
             clockEl.textContent = time;
+
+        //if time = 0 end game
+
     },1000)
 
     clockEl.textContent = time;
@@ -110,14 +116,60 @@ function start(){
 
 
 function beginQuestions(){
-    // get the question from the question.js 
-    var currentQuestion = quizQuestions;
-    console.log(currentQuestion);
-    
+  console.log('begni')
+var currentQuestion = quizQuestions[questionIndex];
+var onScreen = currentQuestion.question;
+var options = currentQuestion.choices;
+var answer = currentQuestion.answer;
+
+  while(time > 0){
+
+   for (i = 0; i < currentQuestion.length; i++){
+       console.log(currentquestion);
+        displayQuestion();
+        btnAnswers();
+        compareAnswers ();
+
+   }
+
+};
+
+function displayQuestion(){
+
+    title.textContent = currentQuestion.question;
+
+};
+
+function btnAnswers(){
+
+};
+
+    // return a div with the current currentQuestion
 
 
+    // while(clockEl.textContent > 0){
 
-    title.textContent = currentQuestion.questions;
+    // }   //if q indes is == quiz questions array end game--
+ 
+    //  get the question from the question.js 
+    //  var currentQuestion = quizQuestions[questionIndex];
+    //  console.log(currentQuestion.answers);
+ 
+    //  set variable for currentQuestion.choices
+ 
+     
+    //  title.textContent = currentQuestion.question;
+ 
+    //  check the answer
+    //  if answer is correct questionIndex++, score 1+ else subtract time
+ 
+    //  questionIndex++
+    //  call separate code for score
+    //  if wrong deduct time
+ 
+    //     display the question here
+
+
 
 }
 startBtn.onclick=start;
