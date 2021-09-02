@@ -22,6 +22,10 @@ var questionEl= document.getElementById('question');
 var title = document.getElementById('title');
 //id for buttons
 var options = document.getElementById('options');
+//variable used to attatch array elements to buttons
+var onScreen; 
+//
+var options;
 
 
 //End OF GAME
@@ -100,7 +104,6 @@ function start(){
     timer = setInterval(()=>{
         //update the time
             time--;
-            console.log('time', time)
             clockEl.textContent = time;
 
         //if time = 0 end game
@@ -116,34 +119,110 @@ function start(){
 
 
 function beginQuestions(){
-  console.log('begni')
+  console.log('begin')
 var currentQuestion = quizQuestions[questionIndex];
-var onScreen = currentQuestion.question;
-var options = currentQuestion.choices;
-var answer = currentQuestion.answer;
 
-  while(time > 0){
 
-   for (i = 0; i < currentQuestion.length; i++){
-       console.log(currentquestion);
-        displayQuestion();
-        btnAnswers();
-        compareAnswers ();
+title.textContent = currentQuestion.question;
 
+options.innerHTML = "";
+
+//  while (time > 0) loop wrapping for loop would not allow timer to start
+   for (let i = 0; i < currentQuestion.choices.length; i++) {
+       var choiceBtn = document.createElement('button');
+       choiceBtn.setAttribute('class', 'choice');
+       choiceBtn.setAttribute('value', currentQuestion.choices[i] )
+       choiceBtn.onclick = answerChoice;
+
+       choiceBtn.textContent = currentQuestion.choices[i] 
+
+       options.appendChild(choiceBtn)
+       
    }
 
-};
 
-function displayQuestion(){
 
-    title.textContent = currentQuestion.question;
+   
 
 };
 
-function btnAnswers(){
+
+function answerChoice(){
+// wrong anser loses time
+
+if(this.value !== quizQuestions[questionIndex].answer){
+    time -= 5;
+
+    if (time < 0){
+        time = 0;
+    }
+
+    clockEl.textContent = time;
+
+}else{
+
+}
+// if time = 0 or currentquestion length = 10,endgame ()
+//log score
+
+//questionEl add attribute class to hide questions
+
+
+//end.removeAttribute("class")
+
+//endgame();
+questionIndex++;
+
+if(questionIndex === quizQuestions.length){
+   endgame()
+}else{
+    beginQuestions()
+}
 
 };
 
+function endgame(){
+//stop timer
+clearInterval(timer)
+
+// hide the question container
+
+questionEl.setAttribute('class', 'hidden');
+
+//show the game over screen
+end.removeAttribute('class')
+
+score.textContent = time;
+};
+
+function saveScore(){
+    //get initals
+    var userInitials =initials.value.trim()
+
+    if(userInitials !== ""){
+        //save scores in local storage
+
+        var highscoresArr= JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+        var scoreObj ={
+            score: time,
+            initials: userInitials
+        }
+
+        highscoresArr.push(scoreObj);
+        window.localStorage.setItem("highscores", JSON.stringify(highscoresArr))
+
+
+    }
+}
+
+
+
+startBtn.onclick=start;
+
+
+
+//OLDER COMMENTS MOVED FROM BEGIN QUESTIONS
     // return a div with the current currentQuestion
 
 
@@ -171,5 +250,6 @@ function btnAnswers(){
 
 
 
-}
+
 startBtn.onclick=start;
+submit.onclick = saveScore;
