@@ -1,54 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <section class="container">
+      <a href="#" class="scorecounter">High Score</a>
 
-        <a href="#" class="scorecounter">High Score</a>
+      <section class="timer">Timer: <span id="clock">0</span></section>
 
-        <section class="timer">Timer: <span id="clock">0</span></section>
+      <div class="opening" id="opening">
+        <h1>How To Play</h1>
+        <ol>
+          <li>CLICKING START BUTTON WILL BEGIN GAME</li>
+          <li>ANSWERING CORRECTLY WILL EARN ONE POINT</li>
+          <li>INCORRECT ANSWER WILL TAKE FIFTEEN SECONDS OFF TIMER</li>
+          <li>QUIZ STARTS WITH 75 SECONDS ON TIMER</li>
+        </ol>
+        <button id="start-btn" class="btn">Start Quiz</button>
+      </div>
 
-        <div class="opening" id="opening">
-            <h1 >How To Play</h1>
-                <ol >
-                    <li>
-                        CLICKING START BUTTON WILL BEGIN GAME
-                    </li>
-                    <li>
-                        ANSWERING CORRECTLY WILL EARN ONE POINT
-                    </li>
-                    <li>
-                        INCORRECT ANSWER WILL TAKE FIFTEEN SECONDS OFF TIMER
-                    </li>
-                    <li>
-                        QUIZ STARTS WITH 75 SECONDS ON TIMER
-                    </li>
-                </ol>
-            <button id="start-btn" class="btn">Start Quiz</button>
-        </div>
+      <div id="question" class="hidden">
+        <h2 id="title"></h2>
+        <div id="options"></div>
+      </div>
 
-        <div id="question" class="hidden"> 
-            <h2 id="title"></h2>
-            <div id='options'></div>
-        </div>
+      <div id="end" class="hidden">
+        <p>your score is <span id="score"></span></p>
+        <p>Initials: <input type="text" id="initials" max="3" /></p>
+        <button id="submit">Submit</button>
+      </div>
+    </section>
 
-        <div id="end" class="hidden">
-            <p>your score is <span id="score"></span></p>
-            <p>Initials: <input type="text" id="initials" max="3"></p>
-            <button id='submit'>Submit</button>
-        </div>
-
-           
-        
-            </section>
-        
-        <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
