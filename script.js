@@ -24,7 +24,6 @@ var title = document.getElementById('title');
 var options = document.getElementById('options');
 //variable used to attatch array elements to buttons
 var onScreen; 
-//
 var options;
 
 
@@ -36,6 +35,9 @@ var score = document.getElementById('score');
 var initials = document.getElementById('initials');
 //submit button for separate page display of scores
 var submit = document.getElementById('submit');
+
+
+
 
 //Funtion beginQuestions
 var questionIndex = 0;
@@ -124,26 +126,25 @@ var currentQuestion = quizQuestions[questionIndex];
 
 
 title.textContent = currentQuestion.question;
-
+//removes buttons from previous question
 options.innerHTML = "";
 
 //  while (time > 0) loop wrapping for loop would not allow timer to start
    for (let i = 0; i < currentQuestion.choices.length; i++) {
+       //creates button for questions
        var choiceBtn = document.createElement('button');
+       //creates class choice
        choiceBtn.setAttribute('class', 'choice');
-       choiceBtn.setAttribute('value', currentQuestion.choices[i] )
+       //set value of each item to a button
+       choiceBtn.setAttribute('value', currentQuestion.choices[i] );
+       //when button clicked answerChoice function begins
        choiceBtn.onclick = answerChoice;
-
+       
        choiceBtn.textContent = currentQuestion.choices[i] 
 
        options.appendChild(choiceBtn)
        
    }
-
-
-
-   
-
 };
 
 
@@ -162,15 +163,6 @@ if(this.value !== quizQuestions[questionIndex].answer){
 }else{
 
 }
-// if time = 0 or currentquestion length = 10,endgame ()
-//log score
-
-//questionEl add attribute class to hide questions
-
-
-//end.removeAttribute("class")
-
-//endgame();
 questionIndex++;
 
 if(questionIndex === quizQuestions.length){
@@ -178,7 +170,6 @@ if(questionIndex === quizQuestions.length){
 }else{
     beginQuestions()
 }
-
 };
 
 function endgame(){
@@ -210,46 +201,16 @@ function saveScore(){
         }
 
         highscoresArr.push(scoreObj);
-        window.localStorage.setItem("highscores", JSON.stringify(highscoresArr))
+        window.localStorage.setItem("highscores", JSON.stringify(highscoresArr));
+}
 
-
-    }
+//NEXT STEP IS TO CREATE PAGE FOR HIGH SCORE DISPLAY
+//REVIEW JSON
+//NEED TIME ON SUNDAY TO REVIEW 
 }
 
 
 
-startBtn.onclick=start;
-
-
-
-//OLDER COMMENTS MOVED FROM BEGIN QUESTIONS
-    // return a div with the current currentQuestion
-
-
-    // while(clockEl.textContent > 0){
-
-    // }   //if q indes is == quiz questions array end game--
- 
-    //  get the question from the question.js 
-    //  var currentQuestion = quizQuestions[questionIndex];
-    //  console.log(currentQuestion.answers);
- 
-    //  set variable for currentQuestion.choices
- 
-     
-    //  title.textContent = currentQuestion.question;
- 
-    //  check the answer
-    //  if answer is correct questionIndex++, score 1+ else subtract time
- 
-    //  questionIndex++
-    //  call separate code for score
-    //  if wrong deduct time
- 
-    //     display the question here
-
-
-
-
+//CLICK EVENTS
 startBtn.onclick=start;
 submit.onclick = saveScore;
